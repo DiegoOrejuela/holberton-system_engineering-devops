@@ -1,0 +1,12 @@
+This proyect is about the some commands permissions at Shell. The commands are the following:
+-chmod
+-sudo
+-su
+-chown
+-chgrp
+-id
+-groups
+-whoami
+-adduser
+-useradd
+-addgroup
