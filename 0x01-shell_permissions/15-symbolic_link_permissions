@@ -1,2 +1,2 @@
 #!/bin/bash
-m  
+chmod -h betty:holberton hello_
