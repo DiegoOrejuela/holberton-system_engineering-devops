@@ -1,0 +1,1 @@
+This proyect is about the commands bash I/O Redirections and filters
