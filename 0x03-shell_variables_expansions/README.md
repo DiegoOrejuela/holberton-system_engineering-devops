@@ -1,0 +1,1 @@
+This proyect is about commands the shell for init files, variables and expansions.   
