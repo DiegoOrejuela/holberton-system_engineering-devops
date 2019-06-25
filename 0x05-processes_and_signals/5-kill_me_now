@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-# displays To infinity and beyond indefinitely.
-kill $"pidof -s bash ./4-to_infinity_and_beyond"
+# To infinity and beyond indefinitely With a sleep 2 in between each
+# iteration I am invincible!!! when receiving a SIGTERM signal
+
+kill "$(pgrep -f 4-to_infinity_and_beyond)"
