@@ -2,5 +2,6 @@
 # Install nginx on your web-01 server
 sudo apt-get -y update
 sudo apt-get -y install nginx
-sudo rm ./*.html
+ufw allow 'Nginx HTTP'
 echo "Holberton School" >> /var/www/html/index.html
+service nginx start
