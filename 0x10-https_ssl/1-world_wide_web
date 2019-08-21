@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Add other subdomains to make our life easier, and write a Bash script that will display information about subdomains
+
+dig $1\
+ | grep -A1 'ANSWER SECTION:'\
+ | awk '/diegoorejuela/ {print}'\
+ | awk '{print "The subdomain www is a " $4 " record and points to " $5}'
