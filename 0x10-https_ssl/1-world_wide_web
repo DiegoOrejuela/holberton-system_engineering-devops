@@ -3,10 +3,16 @@
 
 
 function my_function {
-    clear
-}
+for var in $list
+do
+subdomain="$var.$1"
+dig $subdomain\
+ | grep -A1 "ANSWER SECTION:"\
+ | grep "$1"\
+ | awk -v var="$var" '{print "The subdomain " var " is a " $4 " record and points to " $5}'
+done
 
-my_function
+}
 
 if [ "$#" -eq 1 ]
 then
@@ -17,14 +23,8 @@ then
     list="$2"
 fi
 
-for var in $list
-do
-subdomain="$var.$1"
-dig "$subdomain"\
- | grep -A1 "ANSWER SECTION:"\
- | grep "$1"\
- | awk -v var="$var" '{print "The subdomain " var " is a " $4 " record and points to " $5}'
-done
+my_function "$1"
+
 
 
 
