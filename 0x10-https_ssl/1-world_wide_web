@@ -1,7 +1,32 @@
 #!/usr/bin/env bash
 # Add other subdomains to make our life easier, and write a Bash script that will display information about subdomains
 
-dig $1\
+#list="$2.$1"
+
+my_function () {
+dig $subdomain\
  | grep -A1 'ANSWER SECTION:'\
- | awk '/diegoorejuela/ {print}'\
- | awk '{print "The subdomain www is a " $4 " record and points to " $5}'
+ | grep "$1"\
+ | awk -v var="$var" '{print "The subdomain " var " is a " $4 " record and points to " $5}'
+}
+
+if [ "$#" -eq 1 ]
+then
+    echo "arg 1"
+    list="www lb-01 web-01 web-02"
+
+elif [ "$#" -eq 2 ]
+then
+    echo "arg 2"
+    list="$2"
+fi
+
+for var in $list
+do
+subdomain="$var.$1"
+my_function
+done
+
+
+
+# | awk '/diegoorejuela/ {print}'\
