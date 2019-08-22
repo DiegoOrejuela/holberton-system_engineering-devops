@@ -1,0 +1,9 @@
+#listar puertos = lsof -nP -i | grep LISTEN
+#!/usr/bin/env bash
+# Run Nginx as Nginx
+# https://stackoverflow.com/questions/42329261/running-nginx-as-non-root-user
+
+#sudo sed -i 's/80/8080/g' /etc/nginx/sites-enabled/default
+sed -i "1i\\user nginx;" /etc/nginx/nginx.conf
+#su - nginx -c 'service nginx start'
+
