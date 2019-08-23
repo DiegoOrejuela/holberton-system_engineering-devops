@@ -4,15 +4,15 @@ exec { 'apt-update':
     command => '/usr/bin/apt-get -y update'
 }
 
-package { 'nginx':
+-> package { 'nginx':
     ensure => present,
 }
 
-exec { 'add HTTP header':
+-> exec { 'add HTTP header':
     command => '/bin/sed -i "14i\ \tadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf'
 }
 
-exec { 'restart-nginx':
+-> exec { 'restart-nginx':
     command  => 'service nginx restart',
     provider => 'shell',
 }
