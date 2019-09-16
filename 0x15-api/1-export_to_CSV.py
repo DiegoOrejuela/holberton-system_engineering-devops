@@ -2,8 +2,8 @@
 """ Module - 0-gather_data_from_an_API"""
 
 if __name__ == "__main__":
-    import requests
     import csv
+    import requests
     from sys import argv
 
     r = requests.get("https://jsonplaceholder.typicode.com/todos",
@@ -12,11 +12,11 @@ if __name__ == "__main__":
 
     r = requests.get("https://jsonplaceholder.typicode.com/users",
                      params={"id": int(argv[1])})
-    username = r.json()[0]["username"]
+    username = r.json()[0].get("username")
 
     for dict in dict_text:
         dict["username"] = username
-        del dict["id"]
+        dict.pop("id")
 
     with open('{}.csv'.format(argv[1]), 'w', newline='') as csvfile:
         fieldnames = ["userId", "username", "completed", "title"]

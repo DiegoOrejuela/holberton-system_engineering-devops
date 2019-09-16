@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     r = requests.get("https://jsonplaceholder.typicode.com/users",
                      params={"id": int(argv[1])})
-    name = r.json()[0]["name"]
+    name = r.json()[0].get("name")
 
     r = requests.get("https://jsonplaceholder.typicode.com/todos",
                      params={"userId": argv[1]})
@@ -22,4 +22,4 @@ if __name__ == "__main__":
                                                           count_task_done,
                                                           count_all_task))
     for task in list_task_done:
-        print("     " + task["title"])
+        print("     " + task.get("title"))
