@@ -11,11 +11,14 @@ if __name__ == "__main__":
 
     r = requests.get("https://jsonplaceholder.typicode.com/todos",
                      params={"userId": argv[1]})
-    count_all_task = len(r.json())
+    list_dict = r.json()
+    count_all_task = len(list_dict)
 
-    r = requests.get("https://jsonplaceholder.typicode.com/todos",
-                     params={"userId": argv[1], "completed": "true"})
-    list_task_done = r.json()
+    list_task_done = []
+    for dict in list_dict:
+        if dict.get("completed"):
+            list_task_done.append(dict)
+
     count_task_done = len(list_task_done)
 
     print("Employee {} is done with tasks({}/{}):".format(name,
