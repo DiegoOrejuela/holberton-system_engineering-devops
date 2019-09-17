@@ -9,23 +9,23 @@ if __name__ == "__main__":
     list_dict = r.json()
 
     r = requests.get("https://jsonplaceholder.typicode.com/users")
-    count_users = len(r.json())
-    username = r.json()[0].get("username")
+    users = r.json()
 
     for dict in list_dict:
+        for user in users:
+            if dict.get("userId") == user.get("id"):
+                dict["username"] = user.get("username")
         dict["task"] = dict.pop("title")
-        dict["username"] = username
         dict.pop("id")
 
     json_dict = {}
-    list_task = []
-    for user in range(count_users):
+    for user in users:
         list_task = []
         for dict in list_dict:
-            if (user + 1) == dict.get("userId"):
+            if user.get("id") == dict.get("userId"):
                 dict.pop("userId")
                 list_task.append(dict)
-        json_dict[str(user + 1)] = list_task
+        json_dict[user.get("id")] = list_task
 
     with open('todo_all_employees.json', 'w', encoding="UTF-8") as jsonfile:
         str_json = json.dumps(json_dict)
