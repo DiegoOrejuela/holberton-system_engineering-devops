@@ -39,7 +39,7 @@ def count_words(subreddit, word_list, after=None, hot_dict={}):
         for hot_word in word_list:
             hot_dict[hot_word] = 0
 
-    if response:
+    if response.status_code == 200:
         after_response = response.json().get("data").get("after")
         if after_response:
             count_words(subreddit, word_list,
