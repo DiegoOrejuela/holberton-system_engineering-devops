@@ -18,7 +18,7 @@ def hot_dict_fill(response, word_list, hot_dict, after):
                         hot_dict[hot_word] += 1
     if not after:
         for k, v in sorted(hot_dict.items(),
-                           key=lambda items: items[1],
+                           key=lambda items: (items[1], items[0]),
                            reverse=True):
             if v != 0:
                 print("{}: {}".format(k, v))
